@@ -1,7 +1,7 @@
 USE_CAMERA_STUB := true
 
 TARGET_NO_BOOTLOADER := true
-TARGET_BOOTLOADER_BOARD_NAME := universal7870
+TARGET_BOOTLOADER_BOARD_NAME := universal7580
 
 # Platform
 TARGET_BOARD_PLATFORM := exynos5
@@ -34,7 +34,7 @@ BOARD_KERNEL_CMDLINE := # Exynos doesn't take cmdline arguments from boot image
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 # 000RU = recovery kernel, 000KU = system kernel
-BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --board SRPOL10A000RU
+BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --board RLRPJ7CC000RU
 
 BOARD_BOOTIMAGE_PARTITION_SIZE     := 0x002000000
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x002600000
@@ -43,17 +43,18 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x2CF3FB000 # 0x2CF400000 - 20480 (footer)
 BOARD_CACHEIMAGE_PARTITION_SIZE    := 0x00C800000
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-TARGET_PREBUILT_KERNEL := device/samsung/j7xelte/Image
-TARGET_PREBUILT_DTB := device/samsung/j7xelte/dtb.img
+TARGET_PREBUILT_KERNEL := device/samsung/j7xeltecmcc/Image
+TARGET_PREBUILT_DTB := device/samsung/j7xeltecmcc/dtb.img
 
 # Use this flag if the board has a ext4 partition larger than 2gb
 BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 BOARD_SUPPRESS_SECURE_ERASE := true
-BOARD_CUSTOM_BOOTIMG_MK :=  device/samsung/j7xelte/bootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK :=  device/samsung/j7xeltecmcc/bootimg.mk
 
 # TWRP specific build flags
+RECOVERY_VARIANT := twrp
 TW_THEME := portrait_hdpi
 RECOVERY_SDCARD_ON_DATA := true
 BOARD_HAS_NO_REAL_SDCARD := true
@@ -66,6 +67,7 @@ TW_HAS_DOWNLOAD_MODE := true
 TW_NO_EXFAT_FUSE := true
 TW_MTP_DEVICE := "/dev/mtp_usb"
 TW_EXCLUDE_SUPERSU := true
+TW_EXTRA_LANGUAGES := true
 
 # Color fix
 TARGET_RECOVERY_PIXEL_FORMAT := "ABGR_8888"
@@ -79,8 +81,3 @@ TW_INCLUDE_CRYPTO := true
 #TWRP_INCLUDE_LOGCAT := true
 #TARGET_USES_LOGD := true
 
-# Init properties from bootloader version, ex. model info
-TARGET_UNIFIED_DEVICE := true
-TARGET_INIT_VENDOR_LIB := libinit_j7xelte
-TARGET_RECOVERY_DEVICE_MODULES := libinit_j7xelte
-TARGET_LIBINIT_DEFINES_FILE := device/samsung/j7xelte/init/init_j7xelte.cpp
